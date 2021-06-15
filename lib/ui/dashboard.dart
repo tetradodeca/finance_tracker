@@ -1,6 +1,7 @@
 import 'package:finance_tracker/ui/cryptoList.dart';
 import 'package:finance_tracker/ui/home_view.dart';
 import 'package:finance_tracker/ui/stockList.dart';
+import 'package:finance_tracker/ui/stock_news.dart';
 import 'package:flutter/material.dart';
 import 'placeholder_widget.dart';
 
@@ -17,7 +18,8 @@ class _DashBoardState extends State<DashBoard> {
   final List<Widget> _children = [
     HomeView(),
     CryptoList(),
-    StockList()
+    StockList(),
+    StockNews()
   ];
 
   @override
@@ -51,6 +53,10 @@ class _DashBoardState extends State<DashBoard> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.attach_money),
                 label: 'Stocks',
+              ),
+               BottomNavigationBarItem(
+                icon: Icon(Icons.insights),
+                label: 'Stock News',
               ),
             ],
           ),

@@ -35,7 +35,7 @@ class _HomeViewState extends State<HomeView> {
       if (id == "bitcoin") {
         return (bitcoin * amount).toStringAsFixed(2);
       } else if (id == "ethereum") {
-        return (ethereum * amount).toStringAsPrecision(2);
+        return (ethereum * amount).toStringAsFixed(2);
       } else {
         return (tether * amount).toStringAsFixed(2);
       }

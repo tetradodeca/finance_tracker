@@ -17,8 +17,7 @@ class _CryptoListState extends State<CryptoList> {
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"; //url to get data
     http.Response response = await http.get(_apiURL);
     setState(() {
-      this._cryptoList =
-          jsonDecode(response.body); 
+      this._cryptoList = jsonDecode(response.body);
       print(_cryptoList);
     });
     return;
@@ -33,6 +32,7 @@ class _CryptoListState extends State<CryptoList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Text("Cryptocurrency"),
@@ -60,7 +60,7 @@ class _CryptoListState extends State<CryptoList> {
                         ),
                       )),
                   Expanded(
-                      flex: 4,
+                      flex: 3,
                       child: Text(
                         "Name",
                         style: TextStyle(
@@ -72,27 +72,28 @@ class _CryptoListState extends State<CryptoList> {
                   Expanded(
                       flex: 3,
                       child: Text(
-                        "USD \$",
+                        "24H Change",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 15,
+                          fontSize: 13,
                         ),
                       )),
                   Expanded(
-                      flex: 3,
-                      child: Text(
-                        "Change",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                        ),
-                      )),
+                    flex: 2,
+                    child: Text(
+                      "% + -",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
                   Expanded(
                       flex: 2,
                       child: Text(
-                        "% + -",
+                        "USD \$",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -121,7 +122,7 @@ class _CryptoListState extends State<CryptoList> {
                         ),
                       ),
                       Expanded(
-                        flex: 4,
+                        flex: 3,
                         child: Text(
                           "${_cryptoList[i]['id']}",
                           style: TextStyle(
@@ -130,16 +131,7 @@ class _CryptoListState extends State<CryptoList> {
                         ),
                       ),
                       Expanded(
-                        flex: 3,
-                        child: Text(
-                          "\$${_cryptoList[i]['current_price'].toStringAsFixed(2)}",
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
+                        flex: 2,
                         child: Text(
                           "\$${_cryptoList[i]['price_change_24h'].toStringAsFixed(2)}",
                           style: TextStyle(
@@ -157,6 +149,15 @@ class _CryptoListState extends State<CryptoList> {
                                     0)
                                 ? Colors.green
                                 : Colors.red,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Text(
+                          "\$${_cryptoList[i]['current_price'].toStringAsFixed(2)}",
+                          style: TextStyle(
+                            color: Colors.white,
                           ),
                         ),
                       ),
