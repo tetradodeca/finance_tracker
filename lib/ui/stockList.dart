@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 import 'stockPage.dart';
 
 class StockList extends StatefulWidget {
@@ -41,12 +40,6 @@ class _StockListState extends State<StockList> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text("Stocks"),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () {},
-          )
-        ],
       ),
       body: Column(
         children: [

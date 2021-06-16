@@ -66,6 +66,7 @@ class _StockPageState extends State<StockPage> {
             return Container(
                 child: Column(
               children: [
+                SizedBox(height: 80),
                 Text(
                   '${_quote[0]['name']}',
                   style: TextStyle(

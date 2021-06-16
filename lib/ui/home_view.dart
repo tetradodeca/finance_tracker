@@ -17,6 +17,14 @@ class _HomeViewState extends State<HomeView> {
   double bitcoin = 0.0;
   double ethereum = 0.0;
   double tether = 0.0;
+  double binanceCoin = 0.0;
+  double cardano = 0.0;
+  double dogeCoin = 0.0;
+  double ripple = 0.0;
+  double polkadot = 0.0;
+  double uniswap = 0.0;
+  double litecoin = 0.0;
+  double totalCrypto = 0.0;
 
   @override
   void initState() {
@@ -27,6 +35,13 @@ class _HomeViewState extends State<HomeView> {
     bitcoin = await getPrice("bitcoin");
     ethereum = await getPrice("ethereum");
     tether = await getPrice("tether");
+    binanceCoin = await getPrice("binancecoin");
+    cardano = await getPrice("cardano");
+    dogeCoin = await getPrice("dogecoin");
+    ripple = await getPrice("ripple");
+    polkadot = await getPrice("polkadot");
+    uniswap = await getPrice("uniswap");
+    litecoin = await getPrice("litecoin");
     setState(() {});
   }
 
@@ -36,8 +51,22 @@ class _HomeViewState extends State<HomeView> {
         return (bitcoin * amount).toStringAsFixed(2);
       } else if (id == "ethereum") {
         return (ethereum * amount).toStringAsFixed(2);
-      } else {
+      } else if (id == "tether") {
         return (tether * amount).toStringAsFixed(2);
+      } else if (id == "binancecoin") {
+        return (binanceCoin * amount).toStringAsFixed(2);
+      } else if (id == "cardano") {
+        return (cardano * amount).toStringAsFixed(2);
+      } else if (id == "dogecoin") {
+        return (dogeCoin * amount).toStringAsFixed(2);
+      } else if (id == "ripple") {
+        return (ripple * amount).toStringAsFixed(2);
+      } else if (id == "polkadot") {
+        return (polkadot * amount).toStringAsFixed(2);
+      } else if (id == "uniswap") {
+        return (uniswap * amount).toStringAsFixed(2);
+      } else {
+        return (litecoin * amount).toStringAsFixed(2);
       }
     }
 
@@ -45,14 +74,6 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text("Your Dashboard"),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () {
-              
-            },
-          )
-        ],
       ),
       body: Container(
         color: Colors.black,
@@ -74,13 +95,16 @@ class _HomeViewState extends State<HomeView> {
                 }
                 return ListView(
                   children: snapshot.data!.docs.map((document) {
+                    // totalCrypto = totalCrypto + double.parse(getValue(document.id, document.data()['amount']));
                     return Container(
                       height: MediaQuery.of(context).size.height / 12,
                       width: MediaQuery.of(context).size.width / 1.3,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(width: 1,),
+                          SizedBox(
+                            width: 1,
+                          ),
                           Text(
                             "${document.id}",
                             style: TextStyle(
@@ -104,7 +128,9 @@ class _HomeViewState extends State<HomeView> {
                             color: Colors.white,
                             onPressed: () async {
                               await removeCoin(document.id);
-                            },)
+                            },
+                          ),
+                          // Text(totalCrypto.toString(), style: TextStyle(color: Colors.white),)
                         ],
                       ),
                     );
@@ -126,34 +152,6 @@ class _HomeViewState extends State<HomeView> {
         ),
         backgroundColor: Colors.red,
       ),
-    //   bottomNavigationBar: new Theme(
-    // data: Theme.of(context).copyWith(
-    //     // sets the background color of the `BottomNavigationBar`
-    //     canvasColor: Colors.blue,
-    //     // sets the active color of the `BottomNavigationBar` if `Brightness` is light
-    //     primaryColor: Colors.red,
-    //     textTheme: Theme
-    //         .of(context)
-    //         .textTheme
-    //         .copyWith(caption: new TextStyle(color: Colors.yellow))), // sets the inactive color of the `BottomNavigationBar`
-    // child: BottomNavigationBar(
-    //     unselectedItemColor: Colors.white70,
-    //     selectedItemColor: Colors.orange[100],
-    //     items: const <BottomNavigationBarItem>[
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.monetization_on),
-    //         label: 'Crypto',
-    //       ),
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.attach_money),
-    //         label: 'Stocks',
-    //       ),
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.assessment),
-    //         label: 'Dashboard',
-    //       ),
-    //     ],
-    //   ),
-    // ));
-    );}
+    );
+  }
 }

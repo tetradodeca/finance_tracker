@@ -1,6 +1,8 @@
+import 'package:finance_tracker/ui/cryptoPage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'cryptoPage.dart';
 
 class CryptoList extends StatefulWidget {
   CryptoList({key}) : super(key: key);
@@ -36,12 +38,6 @@ class _CryptoListState extends State<CryptoList> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Text("Cryptocurrency"),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.menu),
-              onPressed: () {},
-            )
-          ],
         ),
         body: Column(children: [
           Container(
@@ -110,58 +106,63 @@ class _CryptoListState extends State<CryptoList> {
                   color: Colors.black,
                   height: MediaQuery.of(context).size.height / 12,
                   width: MediaQuery.of(context).size.width / 1.3,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          "${_cryptoList[i]['market_cap_rank']}",
-                          style: TextStyle(
-                            color: Colors.white,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CryptoPage('${_cryptoList[i]['id']}')));
+                    },
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "${_cryptoList[i]['market_cap_rank']}",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Text(
-                          "${_cryptoList[i]['id']}",
-                          style: TextStyle(
-                            color: Colors.white,
+                        Expanded(
+                          flex: 3,
+                          child: Text(
+                            "${_cryptoList[i]['id']}",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Text(
-                          "\$${_cryptoList[i]['price_change_24h'].toStringAsFixed(2)}",
-                          style: TextStyle(
-                            color: Colors.white,
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            "\$${_cryptoList[i]['price_change_24h'].toStringAsFixed(2)}",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Text(
-                          "${_cryptoList[i]['price_change_percentage_24h'].toStringAsFixed(2)}%",
-                          style: TextStyle(
-                            color: (_cryptoList[i]
-                                        ['price_change_percentage_24h'] >=
-                                    0)
-                                ? Colors.green
-                                : Colors.red,
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            "${_cryptoList[i]['price_change_percentage_24h'].toStringAsFixed(2)}%",
+                            style: TextStyle(
+                              color: (_cryptoList[i]
+                                          ['price_change_percentage_24h'] >=
+                                      0)
+                                  ? Colors.green
+                                  : Colors.red,
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Text(
-                          "\$${_cryptoList[i]['current_price'].toStringAsFixed(2)}",
-                          style: TextStyle(
-                            color: Colors.white,
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            "\$${_cryptoList[i]['current_price'].toStringAsFixed(2)}",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },

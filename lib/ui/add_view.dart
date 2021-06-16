@@ -9,7 +9,18 @@ class AddView extends StatefulWidget {
 }
 
 class _AddViewState extends State<AddView> {
-  List<String> coins = ["bitcoin", "tether", "ethereum"];
+  List<String> coins = [
+    "bitcoin",
+    "tether",
+    "ethereum",
+    "binancecoin",
+    "cardano",
+    "dogecoin",
+    "ripple",
+    "polkadot",
+    "uniswap",
+    "litecoin"
+  ];
 
   String dropDownValue = "bitcoin";
   TextEditingController _amountController = TextEditingController();
@@ -17,9 +28,7 @@ class _AddViewState extends State<AddView> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center, 
-        children: [
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         DropdownButton(
           value: dropDownValue,
           onChanged: (String? value) {
